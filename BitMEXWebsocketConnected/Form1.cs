@@ -20,8 +20,8 @@ namespace BitMEXWebsocketConnected
 			InitializeComponent();
 		}
 
+		//Creating the necessary basic objects
 		BitMexWebsocketClient websocketClient;
-		BitMexWebsocketClientManager websocketClientManager;
 		BitMexWebsocketInterpreter websocketInterpreter;
 		BitMexWebsocketConnected connected;
 
@@ -30,6 +30,7 @@ namespace BitMEXWebsocketConnected
 			ActivityLog.Info("FORM", "Program Started");
 		}
 
+		//With this function we associate the Delegates with the necessary functions and methods, this is called after the objects are instantiated
 		private void DelegateManagement()
 		{
 			websocketClient.WebsocketMessageReceived += OnWebsocketMessageReceived;
@@ -37,11 +38,11 @@ namespace BitMEXWebsocketConnected
 			websocketClient.WebsocketMessageSent += OnWebsocketMessageSent;
 			websocketClient.Connected += OnConnected;
 			websocketClient.Disconnected += OnDisconnected;
-			websocketClient.Authenticated += websocketClientManager.OnAuthenticated;
 			websocketInterpreter.InterpreterProcessedConnected += connected.UpdateFromWebsocket;
 			websocketInterpreter.InterpreterProcessedConnected += UpdateConnectedValues;
 		}
 
+		//When we receive a websocket message we also do this other than process it in the websocketInterpreter
 		public void OnWebsocketMessageReceived(object source, string e)
 		{
 			if (e.Contains("authKey"))
@@ -59,6 +60,7 @@ namespace BitMEXWebsocketConnected
 			ActivityLog.Received("WEBSOCKET", e);
 		}
 
+		//When we send a message to the websocket we do this
 		public void OnWebsocketMessageSent(object source, string e)
 		{
 			if (e.Contains("authKey"))
@@ -69,18 +71,21 @@ namespace BitMEXWebsocketConnected
 			ActivityLog.Sent("WEBSOCKET", e);
 		}
 
+		//We create the subscription string and send to the websocket
 		private void btnSubscribeConnected_Click(object sender, EventArgs e)
 		{
 			string Message = "{\"op\": \"subscribe\", \"args\": [\"connected\"]}";
 			websocketClient.Send(Message);
 		}
 
+		//We create the unsubscription string and send to the websocket
 		private void btnUnsubscribeConnected_Click(object sender, EventArgs e)
 		{
 			string Message = "{\"op\": \"unsubscribe\", \"args\": [\"connected\"]}";
 			websocketClient.Send(Message);
 		}
 
+		//When we try to connect to the websocket the objects are instantiated
 		private void btnConnect_Click(object sender, EventArgs e)
 		{
 			try
@@ -98,7 +103,6 @@ namespace BitMEXWebsocketConnected
 							apiSecret = txtAPISecret.Text;
 						}
 						websocketClient = new BitMexWebsocketClient(new Uri(cboWebsocketURL.Text), apiKey, apiSecret);
-						websocketClientManager = new BitMexWebsocketClientManager(websocketClient);
 						websocketInterpreter = new BitMexWebsocketInterpreter();
 						connected = new BitMexWebsocketConnected();
 						DelegateManagement();
@@ -115,24 +119,26 @@ namespace BitMEXWebsocketConnected
 			{
 				ActivityLog.Error("FORM", ex.Message);
 			}
-
 		}
 
+		//Change the text on the button when the connection happens
 		public void OnConnected(object source, EventArgs e)
 		{
 			btnConnect.Text = "Disconnect";
 
 		}
 
+		//Change the text on the button when the disconnection happens
 		public void OnDisconnected(object source, EventArgs e)
 		{
 			btnConnect.Text = "Connect";
 		}
-		
+
+		//Update the values of the Textboxes when the object is updated
 		public void UpdateConnectedValues(object source, BitMexWebsocketConnected c)
 		{
-			txtConnectedBots.Text = connected.bots;
-			txtConnectedUsers.Text = connected.users;
+			txtConnectedBots.Text = connected.Bots;
+			txtConnectedUsers.Text = connected.Users;
 		}
 	}
 }

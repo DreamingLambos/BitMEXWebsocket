@@ -22,6 +22,7 @@ namespace BitMEXWebsocketConnected.Websocket
         private bool _isAuthenticated;
         private bool _isAuthenticating;
 
+		//We created event handlers so we can trigger other functions in other objects
         public delegate void WebsocketMessageReceivedEventHandler(object source, string e);
         public delegate void WebsocketMessageSentEventHandler(object source, string e);
         public delegate void ConnectedEventHandler(object source, EventArgs e);
@@ -54,6 +55,7 @@ namespace BitMEXWebsocketConnected.Websocket
             return _lastMessageReceivedTime;
         }
 
+		//Constructor if there is no authentication
         public BitMexWebsocketClient(Uri uri)
         {
             _wsUri = uri;
@@ -64,12 +66,14 @@ namespace BitMEXWebsocketConnected.Websocket
             _connectionStartTime = default(DateTime);
         }
 
+		//Constructor if authentication is required
         public BitMexWebsocketClient(Uri uri, string apiKey = null, string apiSecret = null) : this(uri)
         {
             _apiKey = apiKey;
             _apiSecret = apiSecret;
         }
 
+		//Connection to the Websocket endpoint
         public async Task Connect()
         {
             try
@@ -99,7 +103,7 @@ namespace BitMEXWebsocketConnected.Websocket
             }
         }
 
-
+		//Disconnection from Websocket
         public void Disconnect()
         {
             try
@@ -120,6 +124,7 @@ namespace BitMEXWebsocketConnected.Websocket
             }
         }
 
+		//Send a message to the Websocket endpoint
         public async Task Send(string message)
         {
             try
@@ -135,6 +140,7 @@ namespace BitMEXWebsocketConnected.Websocket
             }
         }
 
+		//Receive a message from the Websocket
         public async Task Receive(object websocketClient)
         {
             try
@@ -166,9 +172,10 @@ namespace BitMEXWebsocketConnected.Websocket
             {
                 ActivityLog.Error("WEBSOCKET", e.Message);
             }
-
         }
 
+		//Keep alive sends a PING message to the Websocket in case no messages have been received
+		//This is necessary because otherwise the Websocket would close the connection after a number of seconds of inactivity
         private async Task KeepAlive(BitMexWebsocketClient client)
         {
             while (client.GetIsConnected())
@@ -191,9 +198,9 @@ namespace BitMEXWebsocketConnected.Websocket
 
         }
 
+		//Send an authentication message to the Websocket, necessary when you want to subscribe to some streams
         private void Authenticate()
         {
-
             try
             {
                 if (this._isConnected)
@@ -225,9 +232,9 @@ namespace BitMEXWebsocketConnected.Websocket
                 _isAuthenticating = false;
                 Disconnect();
             }
-
         }
 
+		//To trigger the Delegate when a message is received
         protected virtual void OnWebsocketMessageReceived(string message)
         {
             if (WebsocketMessageReceived != null)
@@ -236,7 +243,8 @@ namespace BitMEXWebsocketConnected.Websocket
             }
         }
 
-        protected virtual void OnWebsocketMessageSent(string message)
+		//To trigger the Delegate when a message is sent
+		protected virtual void OnWebsocketMessageSent(string message)
         {
             if (WebsocketMessageSent != null)
             {
@@ -244,7 +252,8 @@ namespace BitMEXWebsocketConnected.Websocket
             }
         }
 
-        protected virtual void OnConnected()
+		//To trigger the Delegate when the Websocket is connected
+		protected virtual void OnConnected()
         {
             if (Connected != null)
             {
@@ -252,7 +261,8 @@ namespace BitMEXWebsocketConnected.Websocket
             }
         }
 
-        protected virtual void OnDisconnected()
+		//To trigger the Delegate when the Websocket is disconnected
+		protected virtual void OnDisconnected()
         {
             if (Disconnected != null)
             {
@@ -260,7 +270,8 @@ namespace BitMEXWebsocketConnected.Websocket
             }
         }
 
-        protected virtual void OnAuthenticated()
+		//To trigger the Delegate when the Websocket is authenticated
+		protected virtual void OnAuthenticated()
         {
             if (Authenticated != null)
             {

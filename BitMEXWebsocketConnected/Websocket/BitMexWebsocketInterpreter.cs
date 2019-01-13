@@ -12,16 +12,21 @@ namespace BitMEXWebsocketConnected.Websocket
     class BitMexWebsocketInterpreter
     {
 
+		//The BitMexWebsocketInterpreter is an additional layer that we use to interpret the messages received via Websocket and pass to the correct Object
 
-        public delegate void InterpreterProcessedConnectedEventHandler(object source, BitMexWebsocketConnected e);
+		//We created event handlers so we can trigger other functions in other objects
+		public delegate void InterpreterProcessedConnectedEventHandler(object source, BitMexWebsocketConnected e);
 
         public event InterpreterProcessedConnectedEventHandler InterpreterProcessedConnected;
 
-
+		//ProcessMessage is called every time a message is received from the Websocket, here the message is interpreted and directed to the correct function
         public void ProcessMessage(object source, string message)
         {
 
-            if (message.Contains("\"table\":\"connected\""))
+			//The Websocket message contains an update regarding the CONNECTED subscription
+			//We get rid of the unnecessary part of the string and deserialise the remaining to obtain an object of BitMexWebsocketConnected type
+			//We then pass the call another event to update the object through a Delegate
+			if (message.Contains("\"table\":\"connected\""))
             {
 				try
 				{
@@ -39,13 +44,15 @@ namespace BitMEXWebsocketConnected.Websocket
 				}
             }
 
+			//We add this check so that we do not log API Keys in plain text in the log file
             if (message.Contains("error") && !message.Contains("authKey"))
             {
                 ActivityLog.Error("WEBSOCKET INTERPRETER", message);
                 return;
             }
 
-            if (message.Contains("error") && message.Contains("authKey"))
+			//We add this check so that we do not log API Keys in plain text in the log file
+			if (message.Contains("error") && message.Contains("authKey"))
             {
                 ActivityLog.Error("WEBSOCKET INTERPRETER", "Authentication Failed, Please Check API Keys");
                 return;

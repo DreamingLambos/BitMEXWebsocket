@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 namespace BitMEXWebsocketConnected.WebsocketObjects
 {
 
+	//This is the basic class for the CONNECTED subscription, connected only shows the number of users and bots currently connected to the website/server
     public class BitMexWebsocketConnected
     {
-        public string users { get; set; }
-        public string bots { get; set; }
+        public string Users { get; set; }
+        public string Bots { get; set; }
 
+		//With this method we take the deserialised string from the websocket and updated the values of the Properties
 		public void UpdateFromWebsocket(object source, BitMexWebsocketConnected c)
 		{
-			users = c.users.ToString();
-			bots = c.bots.ToString();
+			Users = c.Users.ToString();
+			Bots = c.Bots.ToString();
 		}
     }
 }

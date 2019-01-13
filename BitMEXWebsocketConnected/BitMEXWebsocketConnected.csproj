@@ -61,7 +61,6 @@
     <Compile Include="Util\BitMexUtil.cs" />
     <Compile Include="WebsocketObjects\BitMexWebsocketConnected.cs" />
     <Compile Include="Websocket\BitMexWebsocketClient.cs" />
-    <Compile Include="Websocket\BitMexWebsocketClientManager.cs" />
     <Compile Include="Websocket\BitMexWebsocketInterpreter.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
