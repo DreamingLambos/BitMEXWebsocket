@@ -10,6 +10,7 @@ The content will be separated in different projects to keep it more simple. Alth
 Currently the following streams are covered:
 
 CONNECTED
+QUOTE
 
 
 Please check the Wiki for more details
