@@ -11,6 +11,7 @@ Currently the following streams are covered:
 
 - CONNECTED
 - QUOTE
+- TRADE
 
 
 Please check the Wiki for more details
