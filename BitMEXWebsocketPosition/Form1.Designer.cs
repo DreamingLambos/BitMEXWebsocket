@@ -1,4 +1,4 @@
-﻿namespace BitMEXWebsocketTrade
+﻿namespace BitMEXWebsocketPosition
 {
 	partial class Form1
 	{
@@ -35,8 +35,8 @@
 			this.lblAPISecret = new System.Windows.Forms.Label();
 			this.txtAPIKey = new System.Windows.Forms.TextBox();
 			this.txtAPISecret = new System.Windows.Forms.TextBox();
-			this.btnSubscribeTrades = new System.Windows.Forms.Button();
-			this.btnUnsubscribeTrades = new System.Windows.Forms.Button();
+			this.btnSubscribePosition = new System.Windows.Forms.Button();
+			this.btnUnsubscribePosition = new System.Windows.Forms.Button();
 			this.dgdTrades = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.dgdTrades)).BeginInit();
 			this.SuspendLayout();
@@ -111,25 +111,25 @@
 			this.txtAPISecret.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.txtAPISecret.UseSystemPasswordChar = true;
 			// 
-			// btnSubscribeTrades
+			// btnSubscribePosition
 			// 
-			this.btnSubscribeTrades.Location = new System.Drawing.Point(15, 155);
-			this.btnSubscribeTrades.Name = "btnSubscribeTrades";
-			this.btnSubscribeTrades.Size = new System.Drawing.Size(161, 23);
-			this.btnSubscribeTrades.TabIndex = 11;
-			this.btnSubscribeTrades.Text = "Subscribe to Trade";
-			this.btnSubscribeTrades.UseVisualStyleBackColor = true;
-			this.btnSubscribeTrades.Click += new System.EventHandler(this.btnSubscribeTrades_Click);
+			this.btnSubscribePosition.Location = new System.Drawing.Point(15, 155);
+			this.btnSubscribePosition.Name = "btnSubscribePosition";
+			this.btnSubscribePosition.Size = new System.Drawing.Size(161, 23);
+			this.btnSubscribePosition.TabIndex = 11;
+			this.btnSubscribePosition.Text = "Subscribe to Position";
+			this.btnSubscribePosition.UseVisualStyleBackColor = true;
+			this.btnSubscribePosition.Click += new System.EventHandler(this.btnSubscribePosition_Click);
 			// 
-			// btnUnsubscribeTrades
+			// btnUnsubscribePosition
 			// 
-			this.btnUnsubscribeTrades.Location = new System.Drawing.Point(182, 155);
-			this.btnUnsubscribeTrades.Name = "btnUnsubscribeTrades";
-			this.btnUnsubscribeTrades.Size = new System.Drawing.Size(161, 23);
-			this.btnUnsubscribeTrades.TabIndex = 12;
-			this.btnUnsubscribeTrades.Text = "Unsubscribe to Trade";
-			this.btnUnsubscribeTrades.UseVisualStyleBackColor = true;
-			this.btnUnsubscribeTrades.Click += new System.EventHandler(this.btnUnsubscribeTrades_Click);
+			this.btnUnsubscribePosition.Location = new System.Drawing.Point(182, 155);
+			this.btnUnsubscribePosition.Name = "btnUnsubscribePosition";
+			this.btnUnsubscribePosition.Size = new System.Drawing.Size(161, 23);
+			this.btnUnsubscribePosition.TabIndex = 12;
+			this.btnUnsubscribePosition.Text = "Unsubscribe to Position";
+			this.btnUnsubscribePosition.UseVisualStyleBackColor = true;
+			this.btnUnsubscribePosition.Click += new System.EventHandler(this.btnUnsubscribePosition_Click);
 			// 
 			// dgdTrades
 			// 
@@ -137,17 +137,17 @@
 			this.dgdTrades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgdTrades.Location = new System.Drawing.Point(15, 184);
 			this.dgdTrades.Name = "dgdTrades";
-			this.dgdTrades.Size = new System.Drawing.Size(416, 333);
+			this.dgdTrades.Size = new System.Drawing.Size(801, 80);
 			this.dgdTrades.TabIndex = 13;
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(449, 529);
+			this.ClientSize = new System.Drawing.Size(828, 289);
 			this.Controls.Add(this.dgdTrades);
-			this.Controls.Add(this.btnUnsubscribeTrades);
-			this.Controls.Add(this.btnSubscribeTrades);
+			this.Controls.Add(this.btnUnsubscribePosition);
+			this.Controls.Add(this.btnSubscribePosition);
 			this.Controls.Add(this.txtAPISecret);
 			this.Controls.Add(this.txtAPIKey);
 			this.Controls.Add(this.lblAPISecret);
@@ -157,7 +157,7 @@
 			this.Controls.Add(this.btnConnect);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "Form1";
-			this.Text = "DreamingLambos.com - Websocket XBTUSD Trades";
+			this.Text = "DreamingLambos.com - Websocket XBTUSD Position";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dgdTrades)).EndInit();
 			this.ResumeLayout(false);
@@ -174,8 +174,8 @@
 		private System.Windows.Forms.Label lblAPISecret;
 		private System.Windows.Forms.TextBox txtAPIKey;
 		private System.Windows.Forms.TextBox txtAPISecret;
-		private System.Windows.Forms.Button btnSubscribeTrades;
-		private System.Windows.Forms.Button btnUnsubscribeTrades;
+		private System.Windows.Forms.Button btnSubscribePosition;
+		private System.Windows.Forms.Button btnUnsubscribePosition;
 		private System.Windows.Forms.DataGridView dgdTrades;
 	}
 }
