@@ -15,3 +15,17 @@ Currently the following streams are covered:
 
 
 Please check the Wiki for more details
+
+
+## Follow Us
+
+[Web](https://dreaminglambos.com)
+
+[Reddit](https://dreaminglambos.com/dreaminglambos-reddit)
+
+[TradingView](https://dreaminglambos.com/dreaminglambos-tradingview)
+
+[Twitter](https://dreaminglambos.com/dreaminglambos-twitter)
+
+[YouTube](https://dreaminglambos.com/dreaminglambos-youtube)
+
